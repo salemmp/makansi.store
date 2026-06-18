@@ -1,0 +1,63 @@
+.modal_nuevo_producto
+{
+
+    overflow: hidden;
+    position: absolute;
+    display: none;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.336);
+    z-index: 200;
+}
+
+.modal-content{
+   
+   
+    
+    width: 500px;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+}
+.modal_contenido h1{
+    text-align: end;
+}
+.select{
+    width: 40px;
+    height: 30px;
+    font-size: 16px;
+    outline: none;
+}
+.btn_rosa{
+    position: relative;
+    bottom: -30px;
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--rosado);
+    width: 80% ;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    border: none;
+    margin: auto;
+    border-radius: 7px;
+}
+.btn_rosa i{
+    font-size: 17px;
+}
+.btn_rosa:hover{
+    background-color: var(--rosado_hover) ;
+    cursor: pointer;
+}
+
+.input_img{
+    width: 100px;
+    height: 100px;
+    background-color: antiquewhite;
+}

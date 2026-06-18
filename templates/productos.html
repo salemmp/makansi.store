@@ -1,0 +1,240 @@
+{%extends 'base.html'%}
+
+{%block contenido%}
+<div class="logout-container-btn">
+    <a href="/logout" class="btn-logout-store">
+        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+    </a>
+</div>
+
+<h1 class="h1_ventas">Productos</h1>
+<div class="div_tabla">
+    <button class="nuevo_producto_btn" id="nuevo_producto_btn" data-bs-toggle="modal" data-bs-target="#modal_nuevo_producto">Nuevo Producto</button>
+    <table id="myTable"> 
+        <thead>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio $</th>
+            <th>Talla</th>
+            <th>Foto</th>
+            <th>Opciones</th>
+        </thead>
+        <tbody>
+            {%for x in datos%}
+            <tr>
+                <td>{{x[0]}}</td>
+                <td>{{x[1]}}</td>
+                <td>{{x[2]}}</td>
+                <td>{{x[3]}}</td>
+                <td>{{x[4]}}</td>
+                <td><img data-bs-toggle="modal" data-bs-target="#modal_img_completa{{x[5]}}" class="img_tabla" src="{{url_for('static',filename=x[5])}}" alt=""></td>
+                <td>
+                    <button class="btn_option" data-bs-toggle="modal" data-bs-target="#edit_producto_modal{{x[0]}}"><i class="bi bi-pencil-square"></i></button>
+                    <button class="btn_option" data-bs-toggle="modal" data-bs-target="#delet_producto_modal{{x[0]}}"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal_nuevo_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><span class="resaltar">Nuevo Producto</span></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="form form_nuevo_producto" method="post" action="/formulario" enctype="multipart/form-data">
+            <div class="input_container">
+                <input class="input_form_producto" type="text" required id="producto" name="producto">
+                <label class="lbl-nombre" for="producto">
+                        <span class="text-nomb">Producto</span>
+                </label>
+            </div>
+            
+            <div class="input_container">
+                <input class="input_form_empresa" type="text" required id="cantidad" name="cantidad">
+                <label class="lbl-nombre" for="cantidad">
+                        <span class="text-nomb">Cantidad</span>
+                </label>
+            </div>
+            <div class="input_container">
+                <input class="input_form_empresa" type="text" required id="precio" name="precio">
+                <label class="lbl-nombre" for="precio">
+                        <span class="text-nomb">Precio</span>
+                </label>
+            </div>
+            <label for="tallas">Talla:</label>
+            <select name="tallas" id="tallas" class="select">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <div>
+                <input class="input_img" type="file" name="file" autocomplete="off">
+            </div>
+               
+           <button type="submit" class="btn_rosa" id="producto_btn_enviar"><i class="bi bi-upload"></i>Enviar</button>
+    </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+{%for x in datos%}
+<div class="modal fade" id="edit_producto_modal{{x[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Producto <span class="resaltar">ID {{x[0]}}</span></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="form form_nuevo_producto" method="post" action="/actualizar_producto/{{x[0]}}" enctype="multipart/form-data">
+                <div class="input_container">
+                    <input class="input_form_producto" type="text" required id="producto_editar" name="producto" value="{{x[1]}}">
+                    <label class="lbl-nombre" for="producto_editar">
+                            <span class="text-nomb">Producto</span>
+                    </label>
+                </div>
+                
+                <div class="input_container">
+                    <input class="input_form_empresa" type="text" required id="cantidad_editar" name="cantidad" value="{{x[2]}}">
+                    <label class="lbl-nombre" for="cantidad_editar">
+                            <span class="text-nomb">Cantidad</span>
+                    </label>
+                </div>
+                <div class="input_container">
+                    <input class="input_form_empresa" type="text" required id="precio_editar" name="precio" value="{{x[3]}}">
+                    <label class="lbl-nombre" for="precio_editar">
+                            <span class="text-nomb">Precio</span>
+                    </label>
+                </div>
+                <label for="tallas_editar">Talla:</label>
+                <select name="tallas" id="tallas_editar" class="select">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                
+               <button type="submit" class="btn_rosa" id="producto_btn_enviar"><i class="bi bi-upload"></i>Enviar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+</div>
+{%endfor%}
+
+{%for x in datos%}
+
+
+<div class="modal fade" id="delet_producto_modal{{x[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-alargado">
+    <div class="modal-content b-modal-custom">
+      
+      <div class="modal-header border-0 pb-0">
+        <h1 class="modal-title fs-5 fw-bold text-danger" id="exampleModalLabel">
+          <i class="bi bi-trash3-fill me-2"></i>Eliminar Producto
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body py-4">
+        <p class="text-muted mb-3 fs-6">Estás a punto de borrar del inventario el siguiente artículo:</p>
+        
+        <table class="tabla_delete_custom">
+          <tr>
+            <td class="lbl-info">Producto</td>
+            <td class="val-info fw-semibold text-primary">{{x[1]}}</td>
+          </tr>
+          <tr>
+            <td class="lbl-info">Cantidad</td>
+            <td class="val-info">{{x[2]}} unidades</td>
+          </tr>
+          <tr>
+            <td class="lbl-info">Precio</td>
+            <td class="val-info fw-medium text-success">{{x[3]}} $</td>
+          </tr>
+          <tr>
+            <td class="lbl-info">Talla</td>
+            <td class="val-info"><span class="badge bg-light text-dark border">{{x[4]}}</span></td>
+          </tr>
+        </table>
+        
+        <div class="alert alert-danger-custom mt-4 mb-0">
+          <p class="mb-0 fw-medium">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>¿Seguro que quiere eliminar <strong class="text-dark">{{x[1]}}</strong>? Esta acción lo removerá permanentemente del sistema.
+          </p>
+        </div>
+      </div>
+      
+      <div class="modal-footer border-0 pt-0 d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-light px-4 py-2 border btn-custom-action" data-bs-dismiss="modal">Regresar</button>
+        <form action="/eliminar_registro/{{x[0]}}" method="post" class="m-0">
+          <button type="submit" class="btn btn-danger px-4 py-2 fw-medium btn-custom-action">Confirmar Eliminación</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{%endfor%}
+
+{%for x in datos%}
+<div class="modal fade" id="modal_img_completa{{x[5]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal_imagen">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Imagen</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img class="img_completa_modal" src="{{url_for('static',filename=x[5])}}" alt="">
+        </div>
+      </div>
+    </div>
+</div>
+{%endfor%}
+
+<style>
+    .logout-container-btn {
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem 2rem 0 0;
+        margin-bottom: -1rem;
+    }
+    .btn-logout-store {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #9ca3af;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .btn-logout-store:hover {
+        background-color: rgba(239, 68, 68, 0.15);
+        border-color: #ef4444;
+        color: #fca5a5;
+        transform: translateY(-1px);
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+<script>
+    let table = new DataTable('#myTable', {
+        // options
+    });
+</script>
+{%endblock%}

@@ -1,0 +1,189 @@
+.h1_ventas{
+    text-align: center;
+}
+
+
+.form_ventas{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.btn_ventas_enviar{
+
+    display: flex;
+    gap: 10px;
+
+    justify-content: center;
+    align-items: center;
+    background-color: var(--rosado);
+    width: 80% ;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    border: none;
+   
+    border-radius: 7px;
+}
+.btn_ventas_enviar:hover{
+    background-color: var(--rosado_hover);
+}
+
+.btn_nueva_venta{
+    display: flex;
+    gap: 10px;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--rosado);
+    width: 120px ;
+    height: 40px;
+    padding: 10px;
+    color: white;
+    border: none;
+    margin-bottom: 50px;
+    border-radius: 7px;
+}
+
+.btn_nueva_venta:hover{
+    background-color: var(--rosado_hover);
+}
+
+/* ==========================================================================
+   MODAL DE ELIMINACIÓN PREMIUM
+   ========================================================================== */
+
+/* Contenedor del Modal */
+.b-modal-custom {
+    border-radius: 16px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border: none !important;
+}
+
+/* Tabla de detalles internos */
+.tabla_delete_custom {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* Separa las filas elegantemente */
+}
+
+.tabla_delete_custom td {
+    padding: 12px 16px;
+    font-size: 15px;
+}
+
+/* Columna Izquierda (Etiquetas) */
+.tabla_delete_custom td.lbl-info {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    width: 35%;
+    font-weight: 500;
+    border-radius: 8px 0 0 8px;
+}
+
+/* Columna Derecha (Valores) */
+.tabla_delete_custom td.val-info {
+    color: #212529;
+    background-color: #f8f9fa;
+    font-weight: 600;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Alerta de confirmación personalizada (más suave que la de bootstrap por defecto) */
+.alert-danger-custom {
+    background-color: #fff5f5;
+    color: #e03131;
+    border: 1px solid #ffc9c9;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Ajustes de botones para que se sientan modernos y tengan transiciones suaves */
+.modal-footer .btn {
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.modal-footer .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #bd2130;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25);
+}
+
+/* ==========================================================================
+   FORMULARIO DE NUEVA VENTA (PREMIUM)
+   ========================================================================== */
+
+/* Etiquetas de los inputs */
+.form-label-custom {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 6px;
+}
+
+/* Estilo unificado para Inputs y Selects */
+.custom-input {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    font-size: 15px !important;
+    color: #212529 !important;
+    background-color: #ffff !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* Efecto Focus (Cuando el usuario hace clic para escribir) */
+.custom-input:focus {
+    border-color: #86b7fe !important;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15) !important;
+    background-color: #ffffff !important;
+}
+
+/* Iconos al lado de los inputs (Cantidad y Fecha) */
+.custom-addon {
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    border-right: none !important;
+    border-radius: 8px 0 0 8px !important;
+    color: #6c757d !important;
+}
+
+/* Ajuste para que el input al lado del icono tenga bordes correctos */
+.custom-addon + .custom-input {
+    border-radius: 0 8px 8px 0 !important;
+}
+
+/* Botones del formulario */
+.btn-custom-action {
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-primary {
+   
+    background-color: #0d6efd !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7 !important;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25) !important;
+}
+
+@media (min-width: 576px) {
+    .modal-alargado {
+        max-width: 600px; /* Incrementado de 500px a 600px */
+        width: 100%;
+    }
+}
+

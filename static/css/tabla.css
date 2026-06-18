@@ -1,0 +1,39 @@
+
+.div_tabla{
+    width: 60%;
+    margin: auto;
+  
+    
+}
+
+.tabla_delete{
+   border-collapse: collapse;
+    width: 100%;
+}
+.tabla_delete tr td{
+    padding: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.212);
+}
+
+table{
+    background-color: white;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.322);
+}
+
+table thead{
+    background-color: var(--thead);
+    color: white;
+}
+
+table tbody tr:hover{
+    background-color:var(--hover_tabla);
+    
+}
+
+@media (width<750px){
+    .div_tabla{
+        width: 100%;
+        overflow: auto;
+    }
+}

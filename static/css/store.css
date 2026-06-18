@@ -1,0 +1,403 @@
+/* --- CONFIGURACIÓN GLOBAL --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0b0f19;
+    color: #f9fafb;
+    overflow-x: hidden;
+}
+
+/* --- NAVEGACIÓN --- */
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 0 2rem;
+    background: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 200;
+}
+
+/* Botón de Carrito del Menú con Contador */
+.btn_shop {
+    position: relative;
+    color: #f9fafb;
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn_shop:hover {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    transform: scale(1.05);
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- SIDEBAR DEL CARRITO --- */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Escondido por defecto */
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #111827;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-sidebar.open {
+    right: 0; /* Desplegado */
+}
+
+.cart-sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-sidebar-header h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.cart-items-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+/* Estilo para cada fila de producto en el carrito */
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details h4 {
+    font-size: 0.95rem;
+    margin: 0 0 0.25rem 0;
+    font-weight: 500;
+}
+
+.cart-item-details p {
+    font-size: 0.9rem;
+    color: #3b82f6;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.cart-item-qty-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #0b0f19;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    width: max-content;
+}
+
+.cart-item-qty-selector button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cart-item-qty-selector button:hover {
+    color: white;
+}
+
+.btn-remove-item {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.cart-empty-msg {
+    text-align: center;
+    color: #9ca3af;
+    margin-top: 3rem;
+}
+
+.cart-sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background: #0d131f;
+}
+
+.cart-total-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.cart-total-box #cart-total-price {
+    color: #3b82f6;
+}
+
+.btn_checkout_whatsapp {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn_checkout_whatsapp:hover {
+    background-color: #20ba59;
+    transform: translateY(-2px);
+}
+
+/* --- CATÁLOGO DE PRODUCTOS (GRID) --- */
+.presentacion {
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container_stock {
+    padding: 2rem;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.card {
+    background-color: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.img_container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: #1f2937;
+}
+
+.img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.descripcion_container {
+    padding: 1.25rem;
+}
+
+.descripcion_container h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #f9fafb;
+}
+
+.descripcion_container p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #3b82f6;
+    margin: 0;
+}
+
+/* --- MODALES BOOTSTRAP --- */
+.modal-content {
+    background-color: #111827;
+    color: #f9fafb;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.modal-body {
+    padding: 2rem;
+    text-align: center;
+}
+
+.modal-body img {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.modal-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-price {
+    font-size: 1.25rem;
+    color: #3b82f6;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.btn_add_carrito {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn_add_carrito:hover {
+    background-color: #2563eb;
+}
+
+/* --- FOOTER --- */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: #070a12;
+    color: #9ca3af;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   PANTALLA LED / MARQUESINA MODERNA
+   ========================================================================== */
+
+.pantalla-led-container {
+    width: 100%;
+    background-color: #121212; /* Fondo negro como pantalla LED apagada */
+    overflow: hidden;          /* Esconde el texto que se sale de los bordes */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-top: 3px solid #1a1a1a;
+    border-bottom: 3px solid #1a1a1a;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* El contenedor del texto que se va a desplazar */
+.texto-pasante {
+    display: flex;
+    white-space: nowrap;       /* Obliga al texto a quedarse en una sola línea */
+    padding-left: 100%;        /* Empieza la animación desde fuera de la pantalla */
+    animation: marcha-led 25s linear infinite; /* 25 segundos dura la vuelta completa */
+}
+
+/* Estilo de las letras (Tipografía digital / Neón) */
+.texto-pasante span {
+    font-family: 'Courier New', Courier, monospace, system-ui; /* Fuente tipo consola */
+    font-size: 18px;
+    font-weight: bold;
+    color: #39ff14;            /* Verde Neón/LED (Puedes cambiarlo por #ff3333 si lo quieres rojo) */
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.6); /* Efecto de brillo de diodo LED */
+    padding-right: 50px;       /* Separación entre frases */
+}
+
+/* Pausar el letrero si el usuario pone el cursor encima (Muy buena UX) */
+.pantalla-led-container:hover .texto-pasante {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+/* LÓGICA DE MOVIMIENTO DE DERECHA A IZQUIERDA */
+@keyframes marcha-led {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0); /* Se desplaza exactamente su propio ancho hacia la izquierda */
+    }
+}

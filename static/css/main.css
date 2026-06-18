@@ -1,0 +1,110 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+body{
+    position: relative;
+    background-color: rgb(247, 247, 247);
+}
+
+.img_doge{
+    width: 300px;
+    height: 300px;
+ 
+}
+.container_doge{
+    position: relative;
+    top: 200px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.521);
+    border-radius: 15px;
+    background-color: white;
+    font-size: 22px;
+  
+}
+
+.plano{
+    position: absolute;
+    right: 198px;
+    width: 120px;
+    height: 120px;
+}
+
+
+
+.canvas_container{
+    display: flex;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    
+}
+
+.delete_ventas_div_confirmacion{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.estadisticas_flex {
+    display: flex;
+
+    background-color: #ffffff;
+    width: 100%;             /* Un poco más ancho para dar respiro a los datos */
+    
+    height: 100vh;           /* Que crezca orgánicamente si hay muchos datos */
+        /* Más separación arriba y abajo */
+    padding: 30px;          /* Espacio interno para que nada toque los bordes */
+    align-items: center;
+    
+    /* Sombra más suave y moderna (Soft Shadow) */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+    border-radius: 16px;    /* Bordes más redondeados y estilizados */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.estadisticas_flex table {
+    width: 60%;
+    border-collapse: collapse; /* Elimina espacios dobles en los bordes */
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    text-align: left;
+}
+
+.tabla_estadisticas {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;       /* Scroll horizontal si la pantalla es muy chica */
+}
+
+.estadisticas_flex th {
+    background-color: #f8f9fa; /* Fondo gris claro tecnológico */
+    color: #495057;            /* Texto gris oscuro, no negro puro */
+    font-weight: 600;
+    padding: 16px;
+    border-bottom: 2px solid #dee2e6;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+.estadisticas_flex td {
+    padding: 16px;
+    color: #212529;
+    border-bottom: 1px solid #f1f3f5;
+    transition: background-color 0.2s ease; /* Suaviza el efecto hover */
+}
+
+/* Efecto cebra (Filas intercaladas) */
+.estadisticas_flex tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* Efecto Hover: Resalta la fila donde el usuario pone el mouse */
+.estadisticas_flex tr:hover td {
+    background-color: #f1f3f5;
+    cursor: pointer;
+}

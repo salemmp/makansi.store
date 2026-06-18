@@ -1,0 +1,87 @@
+.form{
+    width: 100%;
+    height: 780px;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+ 
+}
+.form_contacto{
+    width: 100%;
+    height: 380px;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+ 
+}
+.form input{
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: #000000;
+    padding-top: 20px;
+    border: none;
+    outline: 0px;
+}
+.form .lbl-nombre{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid #c7c7c7;
+}
+.form .lbl-nombre:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid var(--rosado);
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+}
+.text-nomb{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    transition: all 0.3s ease;
+    color: #474747;
+}
+.form input:focus + .lbl-nombre .text-nomb,.form input:valid + .lbl-nombre .text-nomb{
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: var(--rosado);
+}
+.form input:focus + .lbl-nombre:after, .form input:valid + .lbl-nombre:after{
+    transform: translateX(0%);
+}
+
+.input_container{
+    position: relative;
+    margin-bottom: 10px;
+    
+   
+}
+input{
+    padding: 15px;
+}
+.flex_empresas{
+    display: flex;
+    overflow: hidden;
+    gap: 50px;
+}
+
+.flex_empresas_a{
+    overflow: hidden;
+
+}
+
+.flex_empresas_b{
+    overflow: hidden;
+   
+}

@@ -1,0 +1,104 @@
+{%extends 'base.html'%}
+
+{%block contenido%}
+<div class="estadisticas_flex">
+  <table class="tabla_estadisticas">
+      <thead>
+        <td>Producto</td>
+        <td>Unidades Vendidas</td>
+        <td>Precio</td>
+        <td>Recaudado</td>
+      </thead>
+      <tbody id="body_estadisticas">
+    
+      </tbody>
+  </table>
+<div class="canvas_container">
+    <canvas id="grafico"></canvas>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+   
+    let tabla=document.getElementById('body_estadisticas') 
+    let ctx=document.getElementById('grafico').getContext('2d')
+    let grafico= new Chart(ctx,{
+    
+    type: 'pie',
+    data: {
+      datasets: [{
+
+        label: "Cantidad vendida",
+        borderWidth: 1,
+        backgroundColor:['#614ED9','#FF66EE','#8BD0FF','#9AA3D9','#6FE8CC','#6FB6E8'],
+        borderColor:'white'
+      
+      }]
+   }
+  
+  })
+
+
+    fetch('/obtener_ventas_totales')
+      .then (response=> response.json())
+      .then(datos=> mostrar(datos))
+      .catch(error=>console.log(error))
+
+
+
+
+
+    const mostrar= (articulos)=>{
+    console.log(articulos)
+    const articulosObjeto = JSON.parse(articulos)
+    console.log(articulosObjeto)
+   
+    articulosObjeto.forEach(element => {
+      grafico.data['labels'].push(element['producto'])
+      grafico.data['datasets'][0].data.push(element['cantidad vendida'])
+    
+   
+  });
+  articulosObjeto.forEach(e => {
+      let tr = document.createElement('tr')
+      let td = document.createElement('td')
+      tr.innerHTML=`<td>${e['producto']}</td>
+                    <td>${e['cantidad vendida']}</td>
+                    <td>${e['precio C/U']}</td>
+                    <td>${e['recaudado']}</td>`
+      tabla.appendChild(tr)
+   
+  });
+ 
+  console.log(grafico.data['datasets'])
+  grafico.update()
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

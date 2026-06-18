@@ -1,0 +1,96 @@
+h2{
+    text-align: center;
+}
+
+.resaltar{
+    color: var(--rosado);
+    font-weight: 600;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: center;
+}
+
+.div_btn_eliminar{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.img_tabla{
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+}
+.img_completa_modal{
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   ESTILOS COMPARTIDOS PARA MODALES DE ACCIONES CRÍTICAS
+   ========================================================================== */
+
+/* Contenedor Base */
+.b-modal-custom {
+    border-radius: 16px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border: none !important;
+}
+
+/* Tabla de Datos del Ítem */
+.tabla_delete_custom {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px; 
+}
+
+.tabla_delete_custom td {
+    padding: 12px 16px;
+    font-size: 15px;
+}
+
+.tabla_delete_custom td.lbl-info {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    width: 30%;
+    font-weight: 500;
+    border-radius: 8px 0 0 8px;
+}
+
+.tabla_delete_custom td.val-info {
+    color: #212529;
+    background-color: #f8f9fa;
+    font-weight: 600;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Mensaje de Advertencia Inferior */
+.alert-danger-custom {
+    background-color: #fff5f5;
+    color: #e03131;
+    border: 1px solid #ffc9c9;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Botonera */
+.btn-custom-action {
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-danger {
+    background-color: #dc3545 !important;
+    border: none !important;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130 !important;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25) !important;
+}

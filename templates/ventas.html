@@ -1,0 +1,214 @@
+{%extends 'base.html'%}
+
+
+{%block contenido%}
+<h1 class="h1_ventas">Ventas</h1>
+<div class="tabla_ventas">
+    
+</div>
+
+
+
+
+<div class="div_tabla">
+  <button class="btn_nueva_venta" data-bs-toggle="modal" data-bs-target="#nueva_venta">Nueva Venta</button>
+  <table id="tabla_ventas"> 
+      <thead>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Talla</th>
+          <th>Cantidad</th>
+          <th>fecha</th>
+          <th>Opciones</th>
+
+
+      </thead>
+      <tbody>
+          
+          
+
+            {%for x in ventas_db%}
+              <tr>
+                  <td>{{x[0]}}</td>
+                  <td>{{x[1]}}</td>
+                  <td>{{x[2]}}</td>
+                  <td>{{x[3]}}</td>
+                  <td>{{x[4]}}</td>
+                  <td><button class="btn_option" data-bs-toggle="modal" data-bs-target="#edit_ventas_modal{{x[0]}}"><i class="bi bi-pencil-square"></i></button>
+                      <button class="btn_option" data-bs-toggle="modal" data-bs-target="#eliminar_ventas_modal{{x[0]}}"><i class="bi bi-trash"></i></button></td>
+              </tr>
+            {%endfor%}
+              
+        
+          
+          
+          
+          
+      </tbody>
+  </table>
+</div>
+
+
+
+
+
+{%for x in ventas_db%}
+
+<div class="modal fade" id="edit_ventas_modal{{x[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><span class="resaltar">{{x[1]}}</span></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  class="form" action="/editar_venta/{{x[0]}}" method="post">
+          <div class="input_container">
+            <input class="input_form_empresa" type="text" required id="producto_editar" name="producto" value="{{x[1]}}">
+            <label class="lbl-nombre" for="producto_editar">
+                    <span class="text-nomb"> Producto</span>
+            </label>
+        </div>
+        <div class="input_container">
+          <input class="input_form_empresa" type="text" required id="talla_editar" name="talla" value="{{x[2]}}">
+          <label class="lbl-nombre" for="talla_editar">
+                  <span class="text-nomb"> Talla</span>
+          </label>
+      </div>
+      <div class="input_container">
+        <input class="input_form_empresa" type="text" required id="cantidad_editar" name="cantidad" value="{{x[3]}}">
+        <label class="lbl-nombre" for="cantidad_editar">
+                <span class="text-nomb">Cantidad</span>
+        </label>
+    </div>
+    <button type="submit" class="btn_rosa">Enviar</button>
+        </form>
+       
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="eliminar_ventas_modal{{x[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"> <div class="modal-content b-modal-custom">
+      
+      <div class="modal-header border-0 pb-0"> <h1 class="modal-title fs-5 fw-bold text-danger" id="exampleModalLabel">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>Eliminar Venta
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body py-4">
+        <p class="text-muted mb-3 fs-6">Estás a punto de eliminar el registro de la siguiente venta:</p>
+        
+        <table class="tabla_delete_custom">
+          <tr>
+            <td class="lbl-info">Producto</td>
+            <td class="val-infofw-semibold">{{x[1]}}</td>
+          </tr>
+          <tr>
+            <td class="lbl-info">Talla</td>
+            <td class="val-info"><span class="badge bg-light text-dark border">{{x[2]}}</span></td>
+          </tr>
+          <tr>
+            <td class="lbl-info">Cantidad</td>
+            <td class="val-info">{{x[3]}} unidades</td>
+          </tr>
+        </table>
+        
+        <div class="alert alert-danger-custom mt-4 mb-0">
+          <p class="mb-0 fw-medium"><i class="bi bi-info-circle me-2"></i>¿Seguro que quiere eliminar esta venta? Esta acción no se puede deshacer.</p>
+        </div>
+      </div>
+      
+      <div class="modal-footer border-0 pt-0 d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-light px-4 py-2 border" data-bs-dismiss="modal">Cancelar</button>
+        <form action="/eliminar_venta/{{x[0]}}" method="post" class="m-0">
+          <button type="submit" class="btn btn-danger px-4 py-2 fw-medium">Eliminar Definitivamente</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{%endfor%}
+
+
+
+
+
+
+
+<div class="modal fade" id="nueva_venta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-alargado"> <div class="modal-content b-modal-custom">
+      
+      <div class="modal-header border-0 pb-0">
+        <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">
+          <i class="bi bi-plus-circle-fill text-primary me-2"></i>Registrar Nueva Venta
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body py-4">
+        <form action="/nueva_venta" method="post" class="form_ventas_custom">
+          
+          <div class="mb-3">
+            <label for="ventas_select_producto" class="form-label-custom">Producto</label>
+            <select id="ventas_select_producto" name="ventas_select_producto" class="form-select custom-input">
+              <option value="" disabled selected>Selecciona un producto...</option>
+              {% for x in datos %}
+              <option value="{{x[1]}}">{{x[1]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div class="mb-3">
+            <label for="ventas_select_talla" class="form-label-custom">Talla</label>
+            <select name="ventas_select_talla" id="ventas_select_talla" class="form-select custom-input">
+              <option value="SM">SM (Chica)</option>
+              <option value="M">M (Mediana)</option>
+              <option value="L">L (Grande)</option>
+              <option value="XL">XL (Extra Grande)</option>
+            </select>
+          </div>
+          
+          <div class="mb-3">
+            <label for="cantidad" class="form-label-custom">Cantidad</label>
+            <div class="input-group">
+              <span class="input-group-text custom-addon"><i class="bi bi-hash"></i></span>
+              <input class="form-control custom-input" type="number" min="1" required id="cantidad" name="cantidad" placeholder="Ej. 5">
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label for="fecha" class="form-label-custom">Fecha de Venta</label>
+            <div class="input-group">
+              <span class="input-group-text custom-addon"><i class="bi bi-calendar3"></i></span>
+              <input type="date" id="fecha" name="fecha" class="form-control custom-input" required>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-end gap-2 border-0 pt-2">
+            <button type="button" class="btn btn-light px-4 py-2 border btn-custom-action" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary px-4 py-2 fw-medium btn-custom-action">Registrar Venta</button>
+          </div>
+
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+    <script>
+        let table = new DataTable('#tabla_ventas', {
+    // options
+});
+    </script>
+{%endblock%}

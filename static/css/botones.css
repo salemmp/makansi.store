@@ -1,0 +1,42 @@
+.nuevo_producto_btn{
+    background-color: var(--rosado);
+    padding: 10px;
+    color: white;
+    border: none;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    border-radius: 7px;
+}
+
+.nuevo_producto_btn:hover{
+    background-color: var(--rosado_hover);
+    cursor: pointer;
+    
+    
+}
+
+.btn_option{
+    width: 40px;
+    height: 40px;
+   font-size: 19px;
+    margin-left: 10px;
+    color: white;
+    background-color: var(--rosado);
+    border: none;
+    border-radius: 7px;
+}
+
+
+.btn_delete{
+    border: none;
+    padding: 10px;
+    color: white;
+    background-color: var(--rosado);
+    border-radius: 4px;
+}
+.btn_delete_no{
+    width: 80px;
+}
+.btn_delete:hover{
+    background-color: var(--rosado_hover);
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/variables.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/productos.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/botones.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/modal.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/inputs.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tabla.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/ventas.css')}}">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <i class="bi bi-list" id="sidebar_open"></i>
+
+    <nav id="sidebar">
+        <h1><i class="bi bi-x" id="close_sidebar"></i></h1>
+        <ul>
+            <a href="{{url_for('productos')}}"><i class="bi bi-bag"></i><li>Productos</li></a>
+            <a href="{{url_for('ventas')}}"><i class="bi bi-graph-up-arrow"></i><li>Ventas</li></a>
+            <a href="{{url_for('estadisticas')}}"><i class="bi bi-pie-chart"></i><li>Estadisticas</li></a>
+            <a href="{{url_for('usuarios')}}"><i class="bi bi-people"></i><li>Usuarios</li></a>
+            
+            <hr style="color: white; opacity: 0.3; margin: 15px 0;">
+            <a href="{{url_for('logout')}}" style="color: #ff6b6b;"><i class="bi bi-box-arrow-right"></i><li>Cerrar Sesión</li></a>
+        </ul>
+    </nav>
+
+    {%block contenido%}
+    {%endblock%}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+    
+    <script>
+        const sidebar = document.getElementById('sidebar')
+        const sidebar_open = document.getElementById('sidebar_open')
+        const sidebar_close = document.getElementById('close_sidebar')
+
+        function toggleElemento() {
+            if (sidebar.style.width == "240px") {
+                sidebar.style.width = "0px"
+            } else {
+                sidebar.style.width = "240px"
+            }
+        }
+
+        sidebar_close.addEventListener("click", toggleElemento)
+        sidebar_open.addEventListener("click", toggleElemento)
+    </script>
+</body>
+</html>
