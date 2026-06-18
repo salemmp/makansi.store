@@ -39,25 +39,11 @@ def allowed_file(filename):
 
 
 @app.route('/')
-def index():
-  # Si el usuario no ha pasado por el login, lo rebotamos
-    if 'usuario' not in session:
-        print('Debes iniciar sesión para acceder a esta sección.', 'error')
-        return redirect(url_for('login'))
-    
-    # Aquí va tu lógica para traer los productos de la base de datos
-    # Por ejemplo:
-    try:
-        conn = sqlite3.connect(DATABASE)
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM productos;") # Reemplaza por tu tabla real de stock
-        datos = cursor.fetchall()
-        conn.close()
-    except sqlite3.Error:
-        datos = [] # Si da error o está vacía, enviamos una lista vacía para que Jinja no rompa
 
-    # Renderiza tu tabla pasándole los datos
-    return render_template('index.html', datos=datos)
+def  store():
+   datos=mostrar_productos()
+   return render_template('store/store.html',datos=datos)
+  
 
 
 
@@ -292,11 +278,6 @@ def  usuarios():
    return render_template('working.html')
 
 
-
-@app.route('/store')
-def  store():
-   datos=mostrar_productos()
-   return render_template('store/store.html',datos=datos)
 
 
 
