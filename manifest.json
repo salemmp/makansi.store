@@ -3,7 +3,7 @@
   "name": "Makansi Store",
   "icons": [
     {
-      "src": "iconos/logo-192.png",
+      "src": "iconos/logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
