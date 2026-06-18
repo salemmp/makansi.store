@@ -1,0 +1,21 @@
+{
+  "short_name": "Mk Store",
+  "name": "Makansi Store",
+  "icons": [
+    {
+      "src": "iconos/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "iconos/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait"
+}
